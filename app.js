@@ -50,11 +50,12 @@ app.get("/", function (req, res) {
             Item.insertMany(defaultItems)
             .then(function() {
                 console.log("Insert succesfull");
+                res.redirect("/");
             })
             .catch(function(err) {
                 console.log(err);
             });
-            res.redirect("/");
+            // res.redirect("/");
  
         }else{
             res.render("list", {listTitle: "Today", newListItems: foundItems});
@@ -82,12 +83,13 @@ app.post('/delete', (req, res) => {
   Item.findByIdAndRemove(checkedItemId)
     .then(function () {
       console.log("successfully deleted checked item");
+      res.redirect('/');
     })
     .catch(function (err) {
       console.log(err);
     });
 
-  res.redirect('/');
+  // res.redirect('/');
 });
 
 app.listen(3000, function() {
